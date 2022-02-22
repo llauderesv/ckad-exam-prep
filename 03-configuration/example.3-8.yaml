@@ -1,0 +1,11 @@
+# Demonstrating security context and run pod as non root
+apiVersion: v1
+kind: Pod
+metadata:
+  name: non-root
+spec:
+  containers:
+    - name: secured-container
+      image: nginx:1.19.0
+      securityContext:
+        runAsNonRoot: true

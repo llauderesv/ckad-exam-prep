@@ -1,0 +1,50 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: readiness-probe
+spec:
+  initContainers:
+    - name: initialize
+      image: busybox:latest
+      command: ["/bin/sh"]
+      args: [
+          "-c",
+          'mkdir -p /usr/shared/app && echo -e "{\"dbConfig\": \
+          {\"host\":\"localhost\",\"port\":5432,\"dbName\":\"customers\"}}" \
+          > /usr/shared/app/config.json',
+        ]
+      volumeMounts:
+        - mountPath: /usr/shared/app
+          name: configdir
+  containers:
+    - name: readiness-checker
+      image: busybox:1.32.0
+      command: ["/bin/sh"]
+      args:
+        [
+          "-c",
+          "while true; do echo 'Application Has been Started!'; sleep 10; done;",
+        ]
+      volumeMounts:
+        - mountPath: /usr/shared/app
+          name: configdir
+      # when readiness probe fail, the pod will remove from serving traffic if the pod is in the service.
+      # but it doesn't restart the pod.
+      readinessProbe:
+        exec:
+          command:
+            - cat
+            - /usr/shared/app/config.json
+        initialDelaySeconds: 5
+        periodSeconds: 5
+      # when liveness probe fail, the pod will restart until the pod will come back alive again.
+      livenessProbe:
+        exec:
+          command:
+            - cat
+            - /usr/shared/app/config.json
+        initialDelaySeconds: 5
+        periodSeconds: 5
+  volumes:
+    - name: configdir
+      emptyDir: {}

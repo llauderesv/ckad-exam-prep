@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-po
+spec:
+  containers:
+    - name: test-po
+      image: nginx:1.19.0
+      # Load all keys from configMapRef
+      # envFrom:
+      #   - configMapRef:
+      #       name: db-config-env
+      # reassigning environment variable keys for ConfigMap entries
+      env:
+        - name: username
+          valueFrom:
+            configMapKeyRef:
+              key: username.txt
+              name: db-config-file
+        - name: password
+          valueFrom:
+            configMapKeyRef:
+              key: password.txt
+              name: db-config-file

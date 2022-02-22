@@ -1,0 +1,4 @@
+DB_PORT=3000
+DB_USERNAME=admin
+DB_PASSWORD=admin123
+DB_HOST=adminhost
