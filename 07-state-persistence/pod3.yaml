@@ -3,20 +3,20 @@ kind: Pod
 metadata:
   creationTimestamp: null
   labels:
-    run: busybox
-  name: busybox
+    run: busybox2
+  name: busybox2
 spec:
   containers:
-    - args:
-        - /bin/sh
-        - -c
-        - sleep 3600
-      image: busybox
-      name: busybox
-      resources: {}
-      volumeMounts:
-        - name: myvolume
-          mountPath: /etc/foo
+  - args:
+    - /bin/sh
+    - -c
+    - sleep 3600
+    image: busybox
+    name: busybox2
+    resources: {}
+    volumeMounts:
+      - name: myvolume
+        mountPath: /etc/foo
   dnsPolicy: ClusterFirst
   restartPolicy: Never
   volumes:
