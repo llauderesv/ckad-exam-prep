@@ -24,3 +24,6 @@ spec:
     - name: consumer-volume
       secret:
         secretName: ext-service-secret
+    - name: consumer-cm
+      configMap:
+        name: db-config
