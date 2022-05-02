@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ecommerce
+  # This will re-write the url to remove the basket keyword before delegating the request
+  # to `basket-service` if match in the path below because the value
+  # that was specify in the write-target is /
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: ecommerce.example.com
+      http:
+        paths:
+          - backend:
+              service:
+                name: basket-service
+                port:
+                  number: 80
+            path: /basket
+            pathType: Prefix
