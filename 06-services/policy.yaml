@@ -3,6 +3,8 @@ kind: NetworkPolicy
 metadata:
   name: access-nginx # pick a name
 spec:
+  # which pods should be applied the policy.
+  # In our case the restriction should be applied in nginx pod
   podSelector:
     matchLabels:
       app: nginx # selector for the pods
