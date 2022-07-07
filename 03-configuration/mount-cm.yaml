@@ -6,6 +6,9 @@ spec:
   containers:
     - name: test-po2
       image: nginx:1.19.0
+      # mountPath is way to create a directory inside in your container
+      # so in this mountPath, this will create a /etc/config folder and 
+      # will mount the configMaps values inside it.
       volumeMounts:
         - mountPath: /etc/config
           name: config-vol
