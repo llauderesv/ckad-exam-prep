@@ -1,6 +1,6 @@
 # CKAD Exam preparation
 
-My practice journey for the preparation of my certification exam in Kubernetes [CKAD](https://trainingportal.linuxfoundation.org/learn/course/certified-kubernetes-application-developer-ckad/exam/exam?page=1). Below is a list links that I study and learn that helped me passed the exam.
+My practice journey for the preparation of my certification exam in Kubernetes [CKAD](https://trainingportal.linuxfoundation.org/learn/course/certified-kubernetes-application-developer-ckad/exam/exam?page=1). Below is a list of resources that I used that helped me passed the exam.
 
 ![ckad image](./screenshots/ckad.png)
 
