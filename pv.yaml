@@ -1,13 +1,13 @@
 kind: PersistentVolume
 apiVersion: v1
 metadata:
-  name: mypv
+  name: my-pv
 spec:
-  storageClassName: normal
   capacity:
-   storage: 4Gi
+    storage: 1Gi
+  storageClassName: manual
   accessModes:
-  - ReadWriteOnce
-  - ReadWriteMany
+    - ReadWriteOnce
+    - ReadWriteMany
   hostPath:
-   path: /etc/foo
+    path: /etc/foo
