@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# You add a taint to a node using kubectl taint.
+# For Example:
+# kubectl taint nodes node1 key1=value1:NoSchedule
+
+# NOTE:
+# places a taint on node node1. 
+# The taint has key key1, value value1, and taint effect NoSchedule. 
+# This means that no pod will be able to schedule onto node1 unless 
+# it has a matching toleration.
+
+
+kubectl taint nodes docker-desktop node-type=prod:NoSchedule

@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: tmp-po
+  name: tmp-po
+spec:
+  containers:
+    - args:
+        - /bin/sh
+        - -c
+        - sleep 3600; echo Hello World
+      image: busybox:1.28
+      name: tmp-po
+      resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+  # You specify a toleration for a Pod in the Pod Spec that will match the taint
+  # in your node to schedule this Pods.
+  tolerations:
+    - key: "node-type"
+      operator: "Equal"
+      value: "prod"
+      effect: "NoSchedule"
+status: {}
